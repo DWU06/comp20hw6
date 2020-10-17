@@ -1,0 +1,132 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8"> 
+	<title>Amicable Numbers</title>
+	<script language="javascript">
+		function isFactor(n, factor)
+		{
+			if ((n % factor) == 0)
+				return true;
+			else
+				return false;
+		}
+
+		function showArray(arr)
+		{
+			array = "The array is: ";
+			for (n = 0; n < arr.length; n++)
+			{
+				array += arr[n] + " ";
+			}
+			document.getElementById("display-data").innerHTML = array;
+		}
+
+		function addArray(arr)
+		{
+			sum = 0;
+			for (n = 0; n < arr.length; n++)
+			{
+				sum += arr[n];
+			}
+			return sum;
+		}
+
+		function getFactors(n)
+		{
+			var array = [];
+			for (i = 0; i < n; i++)
+			{
+				if ((n % i) == 0)
+					array.push(i);
+			}
+			return array;
+		}
+
+		function showData()
+		{
+			Num1 = document.numberform.number1.value;
+		    Num2 = document.numberform.number2.value;
+		    result = "<br/>" + Num1 + " " + Num2;
+		    document.getElementById("display-data").innerHTML = result;
+		}
+
+		function calc()
+		{
+			Num1 = document.numberform.number1.value;
+		    Num2 = document.numberform.number2.value;
+		    num1FacSum = addArray(getFactors(Num1));
+		    num2FacSum = addArray(getFactors(Num2));
+		    if ((num1FacSum == Num2) && (num2FacSum == Num1))
+		    	document.getElementById("display-result").innerHTML = 
+		        	"The two numbers are amicable nubmers.<br/>";
+		    else
+		    	document.getElementById("display-result").innerHTML = 
+		        	"The two numbers are not amicable nubmers.<br/>";
+		}
+
+		window.onload=function()
+		{
+			btn = document.getElementById("show-data");
+			btn.addEventListener("click", showData);
+			btn.addEventListener("click", calc);
+		}
+	</script>
+</head>
+
+<body>
+	<form name=numberform>
+		Number 1:<input type="text" name="number1" id="num1"><br/>
+		Number 2:<input type="text" name="number2" id="num2"><br/>
+		<input type="button" value="Show data" id="show-data"><br/>
+	</form>
+
+	<div id="display-data"></div>
+	<div id="display-result"></div>
+
+	<script language="javascript"> //this section used for teseting
+		// test code for showArray(arr):
+
+		// test1 = [1, 2, 3, 4, 5];
+		// showArray(test1);
+		// document.write("The above line should show: 1 2 3 4 5. <br/>");
+
+		// test code for isFactor(n, factor):
+		// if ((isFactor(24, 3) == true) && (isFactor(49, 8) == false))
+		// 	document.write("Tests for isFactor passed.<br/>");
+		// else
+		// 	document.write("Tests for isFactor failed.<br/>");
+
+		// test code for addArray(arr):
+
+		// test2 = [2, 4, 6, 8, 10];
+		// sum1 = addArray(test1);
+		// sum2 = addArray(test2);
+		// if ((sum1 == 15) && (sum2 == 30))
+		// 	document.write("Tests for addArray passed.<br/>");
+		// else
+		// 	document.write("Tests for addArray failed.<br/>");
+
+		// test code for getFactors(n):
+
+		// test3 = 284;
+		// answer = [1, 2, 4, 71, 142];
+		// FactorArr = getFactors(test3);
+		// function arraysMatch(arr1, arr2)
+		// {
+		// 	if (arr1.length != arr2.length)
+		// 		return false;
+		// 	for (n = 0; n < arr1.length; n++)
+		// 	{
+		// 		if (arr1[n] != arr2[n])
+		// 			return false;
+		// 	}
+		// 	return true;
+		// }
+		// if (arraysMatch(answer, FactorArr) == true)
+		// 	document.write("Test for getFactors passed. <br/>");
+		// else
+		// 	document.write("Test for getFactors failed. <br/>");
+	</script>
+</body>
+</html>
